@@ -8,82 +8,81 @@
 
 import UIKit
 import SocketIO
+import RealmSwift
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    let realm = try! Realm()
+    var contentArray = try! Realm().objects(Content.self).sorted(byKeyPath: "date", ascending: false)
+
     var manager = SocketManager(socketURL: URL(string: "http://localhost:3000")!, config: [.forceWebsockets(true)])
     var socket: SocketIOClient! //= self.manager.defaultSocket
     var sendFlag :Bool = false
+    var serveFlag :Bool = false
     var temp: String = "temp"
-    var messageArray: [String] = ["","","","","","","","","",""]
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         tableView.delegate = self
         tableView.dataSource = self
-//        messageArray.append(temp)
         socket = self.manager.defaultSocket
+
         test()
     }
 
     func test() {
-        if sendFlag == true {
-            manager = SocketManager(socketURL: URL(string: "http://localhost:3000")!, config: [.forceWebsockets(true)])
-            socket = self.manager.defaultSocket
-        }
-        //        DispatchQueue.global(qos: .userInteractive).async {
-        //
-        //            DispatchQueue.main.async {
+        manager = SocketManager(socketURL: URL(string: "http://localhost:3000")!, config: [.forceWebsockets(true)])
+        socket = self.manager.defaultSocket
         socket.on("connect") { data, ack in
             print("socket connected")
-            
             print("send message")
-            if self.sendFlag == true {
-                self.sendFlag = false
-//                self.socket.connect()
-                
-                //                CFRunLoopStop(rl)
+//            if self.sendFlag == true {
+//                self.sendFlag = false
                 self.socket.emit("from_client", self.temp)
-                //                CFRunLoopRun()
-                
-            }
-            
+                self.tableView.reloadData()
+//            }
         }
         socket.on("from_server") { data, ack in
             if let msg = data[0] as? String {
                 print("receive: " + msg)
-                self.cellcount += 1
-
-                //         CFRunLoopStop(rl)
                 self.temp = msg
-//                self.messageArray.append(msg)
+                
+                if self.contentArray.count == 0 || self.contentArray[0].contents != self.temp {
+                    let content = Content()
+                    let allContents = self.realm.objects(Content.self)
+                    if allContents.count != 0 {
+                        content.id = allContents.max(ofProperty: "id")! + 1
+                    }
+                    try! self.realm.write {
+                        content.contents = self.temp
+                        content.date = Date()
+                        self.realm.add(content, update: true)
+                    }
+                }
+
+                
                 self.tableView.reloadData()
             }
         }
-        
         socket.connect()
-        
-        //      CFRunLoopRun()
-        //            }
-        //        }
     }
     
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        let input = segue.destination as! InputViewController
-//        let cell = tableView.cellForRow(at: [0, 0])
-//        cell?.textLabel?.text = input.textView.text
-//        print("aaaaaaaa")
     }
-    var cellcount: Int = 0
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        messageArray[cellcount] = temp
-        return messageArray.count
+//        messageArray[cellcount] = temp
+        return contentArray.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        sendFlag = true;
-        cell.textLabel?.text = messageArray[indexPath.row]
+        
+        
+        sendFlag = true
+        serveFlag = true
+        print(indexPath.row)
+        cell.textLabel?.text = contentArray[indexPath.row].contents
+//        cell.textLabel?.text = messageArray[indexPath.row]
         return cell
     }
 }

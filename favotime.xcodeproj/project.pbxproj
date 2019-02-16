@@ -13,6 +13,7 @@
 		F4C253F522115C9F00215396 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4C253F422115C9E00215396 /* Assets.xcassets */; };
 		F4C253F822115C9F00215396 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4C253F622115C9F00215396 /* LaunchScreen.storyboard */; };
 		F4C2540022115CDA00215396 /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C253FF22115CDA00215396 /* InputViewController.swift */; };
+		F4DF6A1522185564003C6D44 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DF6A1422185563003C6D44 /* Content.swift */; };
 		F60B6F1BB7899673A8CF1BDB /* Pods_favotime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6675AB4865CDAABBAD7A13C4 /* Pods_favotime.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 		F4C253F722115C9F00215396 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F4C253F922115C9F00215396 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4C253FF22115CDA00215396 /* InputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
+		F4DF6A1422185563003C6D44 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
 		F69FAC481C85066B72DA60BC /* Pods-favotime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-favotime.debug.xcconfig"; path = "Pods/Target Support Files/Pods-favotime/Pods-favotime.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,6 +89,7 @@
 				F4C253F622115C9F00215396 /* LaunchScreen.storyboard */,
 				F4C253F922115C9F00215396 /* Info.plist */,
 				F4C253FF22115CDA00215396 /* InputViewController.swift */,
+				F4DF6A1422185563003C6D44 /* Content.swift */,
 			);
 			path = favotime;
 			sourceTree = "<group>";
@@ -208,6 +211,7 @@
 				F4C2540022115CDA00215396 /* InputViewController.swift in Sources */,
 				F4C253F022115C9E00215396 /* ViewController.swift in Sources */,
 				F4C253EE22115C9E00215396 /* AppDelegate.swift in Sources */,
+				F4DF6A1522185564003C6D44 /* Content.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
