@@ -12,9 +12,13 @@
 		F4C253F322115C9E00215396 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4C253F122115C9E00215396 /* Main.storyboard */; };
 		F4C253F522115C9F00215396 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4C253F422115C9E00215396 /* Assets.xcassets */; };
 		F4C253F822115C9F00215396 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4C253F622115C9F00215396 /* LaunchScreen.storyboard */; };
+		F4C2540022115CDA00215396 /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C253FF22115CDA00215396 /* InputViewController.swift */; };
+		F60B6F1BB7899673A8CF1BDB /* Pods_favotime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6675AB4865CDAABBAD7A13C4 /* Pods_favotime.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6675AB4865CDAABBAD7A13C4 /* Pods_favotime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_favotime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C382284A78AD9C2E362C847 /* Pods-favotime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-favotime.release.xcconfig"; path = "Pods/Target Support Files/Pods-favotime/Pods-favotime.release.xcconfig"; sourceTree = "<group>"; };
 		F4C253EA22115C9E00215396 /* favotime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = favotime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4C253ED22115C9E00215396 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F4C253EF22115C9E00215396 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +26,8 @@
 		F4C253F422115C9E00215396 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F4C253F722115C9F00215396 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F4C253F922115C9F00215396 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F4C253FF22115CDA00215396 /* InputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
+		F69FAC481C85066B72DA60BC /* Pods-favotime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-favotime.debug.xcconfig"; path = "Pods/Target Support Files/Pods-favotime/Pods-favotime.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +35,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F60B6F1BB7899673A8CF1BDB /* Pods_favotime.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		129CC43B99E81D7A93DF8853 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F69FAC481C85066B72DA60BC /* Pods-favotime.debug.xcconfig */,
+				7C382284A78AD9C2E362C847 /* Pods-favotime.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		E1FB8CF0A439BC1E6541EDEE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6675AB4865CDAABBAD7A13C4 /* Pods_favotime.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F4C253E122115C9E00215396 = {
 			isa = PBXGroup;
 			children = (
 				F4C253EC22115C9E00215396 /* favotime */,
 				F4C253EB22115C9E00215396 /* Products */,
+				129CC43B99E81D7A93DF8853 /* Pods */,
+				E1FB8CF0A439BC1E6541EDEE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,6 +86,7 @@
 				F4C253F422115C9E00215396 /* Assets.xcassets */,
 				F4C253F622115C9F00215396 /* LaunchScreen.storyboard */,
 				F4C253F922115C9F00215396 /* Info.plist */,
+				F4C253FF22115CDA00215396 /* InputViewController.swift */,
 			);
 			path = favotime;
 			sourceTree = "<group>";
@@ -71,9 +98,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F4C253FC22115C9F00215396 /* Build configuration list for PBXNativeTarget "favotime" */;
 			buildPhases = (
+				EEFE336131587B8E8331D0B8 /* [CP] Check Pods Manifest.lock */,
 				F4C253E622115C9E00215396 /* Sources */,
 				F4C253E722115C9E00215396 /* Frameworks */,
 				F4C253E822115C9E00215396 /* Resources */,
+				8D3417E4E84F9B8E4EEF2036 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -130,11 +159,53 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		8D3417E4E84F9B8E4EEF2036 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-favotime/Pods-favotime-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-favotime/Pods-favotime-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EEFE336131587B8E8331D0B8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-favotime-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F4C253E622115C9E00215396 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4C2540022115CDA00215396 /* InputViewController.swift in Sources */,
 				F4C253F022115C9E00215396 /* ViewController.swift in Sources */,
 				F4C253EE22115C9E00215396 /* AppDelegate.swift in Sources */,
 			);
@@ -280,6 +351,7 @@
 		};
 		F4C253FD22115C9F00215396 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F69FAC481C85066B72DA60BC /* Pods-favotime.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -298,6 +370,7 @@
 		};
 		F4C253FE22115C9F00215396 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7C382284A78AD9C2E362C847 /* Pods-favotime.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
