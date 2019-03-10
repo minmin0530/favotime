@@ -60,19 +60,71 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //            if self.sendFlag == true {
 //                self.sendFlag = false
 
-            var objs: [String:String] = [:]
-            do {
-                objs = try JSONDecoder().decode([String:String].self, from: "{\"userName\":\"1\",\"password\":\"2\"}".data(using: .utf8)!)
-            } catch {
-                
-            }
-            self.socket.emit("login", objs);
-            //    self.socket.emit("from_client", self.temp)
+//            var objs: [String:String] = [:]
+//            do {
+//                objs = try JSONDecoder().decode([String:String].self, from: "{\"userName\":\"1\",\"password\":\"2\"}".data(using: .utf8)!)
+//            } catch {
+//
+//            }
+//            self.socket.emit("login", objs);
+                self.socket.emit("from_client", self.temp)
                 self.tableView.reloadData()
 //            }
         }
-        socket.on("logined") { data, ack in
-            self.socket.emit("from_client", "aaa");
+        socket.on("socket_id") { data0, ack in
+            if let msg = data0[0] as? String {
+                 print(msg);
+                let sendData: String =  "{\"socket_id\":\"" + msg + "\",\"userName\":\"testABC\"}"
+                var objs: [String:String] = [:]
+                do {
+                    objs = try JSONDecoder().decode([String:String].self, from: sendData.data(using: .utf8)!)
+                } catch {
+                    
+                }
+                
+                self.socket.emit("login", objs);
+            }
+        }
+        socket.on("logined") { data0, ack in
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = .prettyPrinted
+            do {
+                let jsonData = try encoder.encode(data0 as? [[String:String]])
+                let jsonString = String(data: jsonData, encoding: .utf8)!
+                let lecturerData: Data =  jsonString.data(using: String.Encoding.utf8)!
+                
+                // JSONデータの読み込みとデータの取り出し
+                do {
+                    let json = try JSONSerialization.jsonObject(with: lecturerData, options: JSONSerialization.ReadingOptions.allowFragments) // JSONの読み込み
+                    let top = json as! NSArray // トップレベルが配列
+                    for roop in top {
+                        let next = roop as! NSDictionary
+                        print(next["userName"] as! String) // 1, 2 が表示
+                        
+//                        let content = next["info"] as! NSDictionary
+//                        print(content["age"] as! Int) // 40, 50 が表示
+                    }
+                } catch {
+                    print(error) // パースに失敗したときにエラーを表示
+                }
+                
+                
+                
+                
+            } catch {
+                
+            }
+
+//            if let msg = data0[0] as? String {
+//                print("@@@");
+//                print("@" + msg);
+//
+//
+//
+//
+//
+////                self.socket.emit("from_client", "aaa");
+//            }
         }
         socket.on("from_server") { data, ack in
             if let msg = data[0] as? String {
