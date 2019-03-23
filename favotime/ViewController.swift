@@ -23,6 +23,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.willTerminate),
+                                               name: UIApplication.willTerminateNotification, object: nil)
+        
+        
         // Do any additional setup after loading the view, typically from a nib.
         tableView.delegate = self
         tableView.dataSource = self
@@ -36,6 +41,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             if data.logined != true {
                 let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
                 self.present(loginViewController!, animated: true, completion: nil)
+            } else {
+                test()
             }
         }
         /*
@@ -60,8 +67,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        test()
     }
     
-    func refresh() {
-        //再描写するコードを記述
+    @objc func willTerminate() {
+        let login = Login()
+        login.id = 1
+        login.logined = false
+        
+        try! self.realm.write {
+            self.realm.add(login, update: true)
+        }
+        print("disconnect!!!")
+        NotificationCenter.default.removeObserver(self)
     }
 
 //    let json = "[{\"a\":\"1\"},{\"b\":\"2\"}]".data(using: .utf8)!
@@ -163,17 +178,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 
                 self.tableView.reloadData()
             }
-        }
-        socket.on("disconnect") { data0, ack in
-            let login = Login()
-            login.id = 1
-            login.logined = false
-
-            try! self.realm.write {
-                self.realm.add(login, update: true)
-            }
-            print("disconnect!!!")
-
         }
         socket.connect()
     }
