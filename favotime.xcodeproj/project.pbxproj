@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F413D1692245C0D400F6E288 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = F413D1682245C0D400F6E288 /* Login.swift */; };
 		F4C253EE22115C9E00215396 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C253ED22115C9E00215396 /* AppDelegate.swift */; };
 		F4C253F022115C9E00215396 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C253EF22115C9E00215396 /* ViewController.swift */; };
 		F4C253F322115C9E00215396 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4C253F122115C9E00215396 /* Main.storyboard */; };
 		F4C253F522115C9F00215396 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4C253F422115C9E00215396 /* Assets.xcassets */; };
 		F4C253F822115C9F00215396 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4C253F622115C9F00215396 /* LaunchScreen.storyboard */; };
 		F4C2540022115CDA00215396 /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C253FF22115CDA00215396 /* InputViewController.swift */; };
+		F4D01A82223C0E08001922B1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D01A81223C0E08001922B1 /* LoginViewController.swift */; };
 		F4DF6A1522185564003C6D44 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DF6A1422185563003C6D44 /* Content.swift */; };
 		F60B6F1BB7899673A8CF1BDB /* Pods_favotime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6675AB4865CDAABBAD7A13C4 /* Pods_favotime.framework */; };
 /* End PBXBuildFile section */
@@ -20,6 +22,7 @@
 /* Begin PBXFileReference section */
 		6675AB4865CDAABBAD7A13C4 /* Pods_favotime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_favotime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C382284A78AD9C2E362C847 /* Pods-favotime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-favotime.release.xcconfig"; path = "Pods/Target Support Files/Pods-favotime/Pods-favotime.release.xcconfig"; sourceTree = "<group>"; };
+		F413D1682245C0D400F6E288 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		F4C253EA22115C9E00215396 /* favotime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = favotime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4C253ED22115C9E00215396 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F4C253EF22115C9E00215396 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -28,6 +31,7 @@
 		F4C253F722115C9F00215396 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F4C253F922115C9F00215396 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4C253FF22115CDA00215396 /* InputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
+		F4D01A81223C0E08001922B1 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F4DF6A1422185563003C6D44 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
 		F69FAC481C85066B72DA60BC /* Pods-favotime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-favotime.debug.xcconfig"; path = "Pods/Target Support Files/Pods-favotime/Pods-favotime.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -90,6 +94,8 @@
 				F4C253F922115C9F00215396 /* Info.plist */,
 				F4C253FF22115CDA00215396 /* InputViewController.swift */,
 				F4DF6A1422185563003C6D44 /* Content.swift */,
+				F4D01A81223C0E08001922B1 /* LoginViewController.swift */,
+				F413D1682245C0D400F6E288 /* Login.swift */,
 			);
 			path = favotime;
 			sourceTree = "<group>";
@@ -211,6 +217,8 @@
 				F4C2540022115CDA00215396 /* InputViewController.swift in Sources */,
 				F4C253F022115C9E00215396 /* ViewController.swift in Sources */,
 				F4C253EE22115C9E00215396 /* AppDelegate.swift in Sources */,
+				F413D1692245C0D400F6E288 /* Login.swift in Sources */,
+				F4D01A82223C0E08001922B1 /* LoginViewController.swift in Sources */,
 				F4DF6A1522185564003C6D44 /* Content.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

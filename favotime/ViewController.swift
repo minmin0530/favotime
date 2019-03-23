@@ -13,7 +13,8 @@ import RealmSwift
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let realm = try! Realm()
     var contentArray = try! Realm().objects(Content.self).sorted(byKeyPath: "date", ascending: false)
-
+    var loginData    = try! Realm().objects(Login.self)
+    
     var manager = SocketManager(socketURL: URL(string: "https://ai6.jp")!, config: [.forceWebsockets(true)])
     var socket: SocketIOClient! //= self.manager.defaultSocket
     var sendFlag :Bool = false
@@ -27,6 +28,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.dataSource = self
         socket = self.manager.defaultSocket
 
+        if loginData.count == 0 {
+            let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
+            self.present(loginViewController!, animated: true, completion: nil)
+        }
+        for data in loginData {
+            if data.logined != true {
+                let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
+                self.present(loginViewController!, animated: true, completion: nil)
+            }
+        }
         /*
         let url = URL(string: "https://ai6.jp")
         var request = URLRequest(url: url!)
@@ -46,8 +57,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }.resume()
         */
         
-        test()
+//        test()
     }
+    
+    func refresh() {
+        //再描写するコードを記述
+    }
+
 //    let json = "[{\"a\":\"1\"},{\"b\":\"2\"}]".data(using: .utf8)!
 //    let decoder = JSONDecoder()
 
@@ -147,6 +163,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 
                 self.tableView.reloadData()
             }
+        }
+        socket.on("disconnect") { data0, ack in
+            let login = Login()
+            login.id = 1
+            login.logined = false
+
+            try! self.realm.write {
+                self.realm.add(login, update: true)
+            }
+            print("disconnect!!!")
+
         }
         socket.connect()
     }
