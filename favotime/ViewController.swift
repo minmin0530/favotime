@@ -85,6 +85,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func test() {
         manager = SocketManager(socketURL: URL(string: "https://ai6.jp")!, config: [.forceWebsockets(true)])
         socket = self.manager.defaultSocket
+        
         socket.on("connect") { data0, ack in
             print("socket connected")
             print("send message")
@@ -101,7 +102,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 self.socket.emit("from_client", self.temp)
                 self.tableView.reloadData()
 //            }
-        }
+        }/*
         socket.on("socket_id") { data0, ack in
             if let msg = data0[0] as? String {
                  print(msg);
@@ -156,7 +157,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //
 ////                self.socket.emit("from_client", "aaa");
 //            }
-        }
+        }*/
         socket.on("from_server") { data, ack in
             if let msg = data[0] as? String {
                 print("receive: " + msg)
