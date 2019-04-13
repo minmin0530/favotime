@@ -22,9 +22,10 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var displayNameTextField: UITextField!
     @IBAction func handleLoginButton(_ sender: Any) {
-        test()
+        test(signFlag: 1)
     }
     @IBAction func createAccountButton(_ sender: Any) {
+        test(signFlag: 2)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +35,7 @@ class LoginViewController: UIViewController {
     }
     
 
-    func test() {
+    func test(signFlag :Int) {
         manager = SocketManager(socketURL: URL(string: "https://ai6.jp")!, config: [.forceWebsockets(true)])
         socket = self.manager.defaultSocket
         socket.on("connect") { data0, ack in
@@ -57,15 +58,29 @@ class LoginViewController: UIViewController {
         socket.on("socket_id") { data0, ack in
             if let msg = data0[0] as? String {
                 print(msg);
-                let sendData: String =  "{\"socket_id\":\"" + msg + "\",\"userName\":\"" + self.mailAddressTextField.text! + "\",\"password\":\"" + self.passwordTextField.text! + "\"}"
-                var objs: [String:String] = [:]
-                do {
-                    objs = try JSONDecoder().decode([String:String].self, from: sendData.data(using: .utf8)!)
-                } catch {
-                    
-                }
                 
-                self.socket.emit("login", objs);
+                if signFlag == 1 {
+                    print("signFlag1")
+                    let sendData: String =  "{\"socket_id\":\"" + msg + "\",\"userName\":\"" + self.mailAddressTextField.text! + "\",\"password\":\"" + self.passwordTextField.text! + "\"}"
+                    var objs: [String:String] = [:]
+                    do {
+                        objs = try JSONDecoder().decode([String:String].self, from: sendData.data(using: .utf8)!)
+                    } catch {
+                        
+                    }
+                    
+                    self.socket.emit("login", objs);
+                } else if signFlag == 2 {
+                    let sendData: String =  "{\"socket_id\":\"" + msg + "\",\"email\":\"" + self.mailAddressTextField.text! + "\",\"password\":\"" + self.passwordTextField.text! + "\",\"name\":\"" + self.displayNameTextField.text! + "\"}"
+                    var objs: [String:String] = [:]
+                    do {
+                        objs = try JSONDecoder().decode([String:String].self, from: sendData.data(using: .utf8)!)
+                    } catch {
+                        
+                    }
+                    
+                    self.socket.emit("signup", objs);
+                }
             }
         }
         socket.on("login_fail") { data0, ack in
@@ -90,6 +105,29 @@ class LoginViewController: UIViewController {
             } catch {
             }
         }
+        socket.on("signup_fail") { data0, ack in
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = .prettyPrinted
+            do {
+                let jsonData = try encoder.encode(data0 as? [[String:String]])
+                let jsonString = String(data: jsonData, encoding: .utf8)!
+                let lecturerData: Data =  jsonString.data(using: String.Encoding.utf8)!
+                // JSONデータの読み込みとデータの取り出し
+                do {
+                    let json = try JSONSerialization.jsonObject(with: lecturerData, options: JSONSerialization.ReadingOptions.allowFragments) // JSONの読み込み
+                    let top = json as! NSArray // トップレベルが配列
+                    for roop in top {
+                        let next = roop as! NSDictionary
+                        print("signup fail.")
+                        print(next["userName"] as! String) // 1, 2 が表示
+                    }
+                } catch {
+                    print(error) // パースに失敗したときにエラーを表示
+                }
+            } catch {
+            }
+        }
+
         socket.on("logined") { data0, ack in
             let encoder = JSONEncoder()
             encoder.outputFormatting = .prettyPrinted
@@ -133,6 +171,39 @@ class LoginViewController: UIViewController {
             //
             ////                self.socket.emit("from_client", "aaa");
             //            }
+        }
+        socket.on("signuped") { data0, ack in
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = .prettyPrinted
+            do {
+                let jsonData = try encoder.encode(data0 as? [[String:String]])
+                let jsonString = String(data: jsonData, encoding: .utf8)!
+                let lecturerData: Data =  jsonString.data(using: String.Encoding.utf8)!
+                
+                // JSONデータの読み込みとデータの取り出し
+                do {
+                    let json = try JSONSerialization.jsonObject(with: lecturerData, options: JSONSerialization.ReadingOptions.allowFragments) // JSONの読み込み
+                    let top = json as! NSArray // トップレベルが配列
+                    for roop in top {
+                        let next = roop as! NSDictionary
+                        print(next["userName"] as! String) // 1, 2 が表示
+                        
+                        let login = Login()
+                        login.id = 1
+                        login.logined = true
+                        try! self.realm.write {
+                            self.realm.add(login, update: true)
+                        }
+                        self.dismiss(animated: true, completion: nil)
+                        
+                        //                        let content = next["info"] as! NSDictionary
+                        //                        print(content["age"] as! Int) // 40, 50 が表示
+                    }
+                } catch {
+                    print(error) // パースに失敗したときにエラーを表示
+                }
+            } catch {
+            }
         }
         /*
         socket.on("from_server") { data, ack in
